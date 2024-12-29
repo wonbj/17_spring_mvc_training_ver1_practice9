@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.application.practice9.post.dao.PostDAO">
+
+	<select id="getPostList" resultType="PostDTO">
+		SELECT *
+		FROM   POST
+	</select>
+
+	<insert id="createPost" parameterType="PostDTO">
+		INSERT INTO POST (
+			WRITER,
+			SUBJECT,
+			PASSWD,
+			CONTENT
+		)
+		VALUES (
+			#{writer},
+			#{subject},
+			#{passwd},
+			#{content}
+		)
+	</insert>
+
+	<update id="updateReadCnt" parameterType="long">
+		UPDATE POST
+		SET	   READ_CNT = READ_CNT + 1
+		WHERE  POST_ID = #{postId}
+	</update>
+
+	<select id="getPostDetail" parameterType="long" resultType="PostDTO">
+		SELECT *
+		FROM   POST
+		WHERE  POST_ID = #{postId}
+	</select>
+	
+	<select id="getPasswd" parameterType="long">
+		SELECT PASSWD
+		FROM   POST
+		WHERE  POST_ID = #{postId}
+	</select>
+	
+	<update id="updatePost" parameterType="PostDTO">
+		UPDATE POST
+		SET    SUBJECT = #{subject},
+			   CONTENT = #{content},
+			   UPDATE_AT = NOW()
+		WHERE  POST_ID = #{postId}
+	</update>
+	
+	<delete id="deletePost" parameterType="long">
+		DELETE FROM POST
+		WHERE       POST_ID = #{postId}
+	</delete>
+	
+</mapper>

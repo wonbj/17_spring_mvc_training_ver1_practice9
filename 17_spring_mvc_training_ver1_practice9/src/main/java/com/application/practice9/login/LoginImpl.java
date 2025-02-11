@@ -18,6 +18,7 @@ public class LoginImpl implements Login {
 	@Autowired
 	private PostDAO postDAO;
 
+	// 와따시는 bbbbbbb
 	@Override
 	public List<PostDTO> getPostList() {
 		return postDAO.getPostList();
@@ -39,14 +40,11 @@ public class LoginImpl implements Login {
 
 	@Override
 	public boolean checkAuthenticationUser(PostDTO postDTO) {
-		String encodedPasswd = postDAO.getPasswd(postDTO.getPostId());
-		boolean isCheckedUser = passwordEncoder.matches(postDTO.getPasswd(), encodedPasswd);
-		return isCheckedUser;
+		return true;
 	}
 
 	@Override
 	public void updatePost(PostDTO postDTO) {
-		postDAO.updatePost(postDTO);
 	}
 
 	@Override

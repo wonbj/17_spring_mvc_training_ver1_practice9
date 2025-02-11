@@ -12,6 +12,7 @@ import com.application.practice9.post.dto.PostDTO;
 @Service
 public class LoginImpl implements Login {
 
+	// 와따시는 A
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
@@ -20,13 +21,12 @@ public class LoginImpl implements Login {
 
 	@Override
 	public List<PostDTO> getPostList() {
-		return postDAO.getPostList();
+		return null;
 	}
 
 	@Override
 	public void createPost(PostDTO postDTO) {
-		postDTO.setPasswd(passwordEncoder.encode(postDTO.getPasswd()));
-		postDAO.createPost(postDTO);
+		
 	}
 
 	@Override
